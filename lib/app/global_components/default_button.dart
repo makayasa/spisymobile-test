@@ -20,7 +20,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.amber,
+      color: kPrimaryColor,
       borderRadius: kDefaultBorderRadius10,
       child: InkWell(
         borderRadius: kDefaultBorderRadius10,

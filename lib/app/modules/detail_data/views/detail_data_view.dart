@@ -68,6 +68,7 @@ class DetailDataView extends GetView<DetailDataController> {
               }
               final uuid = Uuid().v4();
               data.uuid = uuid;
+              logKey('data creat', data.toJson());
               await controller.dbController.createUser(data: data);
               await controller.dbController.getAllUsers(refreshList: true);
               Get.back(
@@ -79,7 +80,9 @@ class DetailDataView extends GetView<DetailDataController> {
         ),
       ),
       appBar: AppBar(
-        title: const Text('DetailDataView'),
+        title: Obx(
+          () => DefText(controller.isEdit.value ? 'Edit User' : 'Create User').extraLarge,
+        ),
         centerTitle: true,
       ),
       body: Container(

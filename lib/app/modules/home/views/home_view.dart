@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: DefText('Home').extraLarge,
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -61,7 +61,7 @@ class HomeView extends GetView<HomeController> {
                     return Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: ListView.separated(
-                        padding: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.only(top: 10, bottom: 100),
                         itemCount: state.length,
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -71,26 +71,43 @@ class HomeView extends GetView<HomeController> {
                         },
                         itemBuilder: (context, index) {
                           return Container(
+                            // height: 100,
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             decoration: BoxDecoration(
-                              color: Colors.lightBlue,
+                              color: kPrimaryColor.withAlpha(80),
+                              // color: Colors.lightBlue,
+                              border: Border.all(
+                                color: kPrimaryColor,
+                                width: 5,
+                              ),
                               borderRadius: kDefaultBorderRadius10,
                             ),
                             child: Row(
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    DefText(
-                                      state[index].name,
-                                    ).normal,
-                                    SizedBox(height: 5),
-                                    DefText(
-                                      state[index].address.toString(),
-                                    ).normal,
-                                  ],
+                                Expanded(
+                                  // flex: ,
+                                  child: Container(
+                                    // color: Colors.amber,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        DefText(
+                                          state[index].name,
+                                        ).large,
+                                        SizedBox(height: 1),
+                                        DefText(
+                                          '${state[index].gender ? 'Male' : 'Female'} - ${state[index].age} ${state[index].age <= 1 ? "year" : "years"} old',
+                                        ).semiSmall,
+                                        SizedBox(height: 20),
+                                        DefText(
+                                          state[index].address.toString(),
+                                          maxLine: 2,
+                                        ).normal,
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                Spacer(),
+                                // Spacer(flex: 1),
                                 IconButton(
                                   icon: Icon(
                                     Icons.edit,

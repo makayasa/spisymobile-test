@@ -38,51 +38,55 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginCubit = LoginCubit();
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            DefaultFormField(
-              initialValue: kDefaultUsername,
-              onChanged: (v) {
-                loginCubit.onChangedUsername(v);
-              },
-              hint: 'Username',
-            ),
-            SizedBox(height: 20),
-            DefaultFormField(
-              masText: true,
-              initialValue: kDefaultPssword,
-              onChanged: (v) {
-                loginCubit.onChangePassword(v);
-              },
-              hint: 'Password',
-            ),
-            SizedBox(height: 20),
-            BlocConsumer<LoginCubit, Map>(
-              bloc: loginCubit,
-              listener: (context, state) {},
-              builder: (context, state) {
-                return DefaultButton(
-                  text: 'Login',
-                  onTap: () {
-                    if (isEmpty(state['username']) || isEmpty(isEmpty)) {
-                      Get.defaultDialog(middleText: 'Username dan password tidak boleh kosong');
-                      return;
-                    }
-                    if (state['username'] != kDefaultUsername && state['password'] != kDefaultPssword) {
-                      Get.defaultDialog(
-                        middleText: 'Username atau password salah'
-                      );
-                      return;
-                    }
-                    Get.offNamed(Routes.HOME);
-                  },
-                );
-              },
-            ),
-          ],
+      appBar: AppBar(
+        title: DefText('Login').extraLarge,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DefaultFormField(
+                initialValue: kDefaultUsername,
+                onChanged: (v) {
+                  loginCubit.onChangedUsername(v);
+                },
+                hint: 'Username',
+              ),
+              SizedBox(height: 20),
+              DefaultFormField(
+                masText: true,
+                initialValue: kDefaultPssword,
+                onChanged: (v) {
+                  loginCubit.onChangePassword(v);
+                },
+                hint: 'Password',
+              ),
+              SizedBox(height: 20),
+              BlocConsumer<LoginCubit, Map>(
+                bloc: loginCubit,
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return DefaultButton(
+                    text: 'Login',
+                    onTap: () {
+                      if (isEmpty(state['username']) || isEmpty(isEmpty)) {
+                        Get.defaultDialog(middleText: 'Username dan password tidak boleh kosong');
+                        return;
+                      }
+                      if (state['username'] != kDefaultUsername && state['password'] != kDefaultPssword) {
+                        Get.defaultDialog(middleText: 'Username atau password salah');
+                        return;
+                      }
+                      Get.offNamed(Routes.HOME);
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

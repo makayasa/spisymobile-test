@@ -26,7 +26,7 @@ class DetailDataCubit extends Cubit<UserModel> {
   void onChangedAddres(String address) {
     // data.address = address;
     final data = UserModel.fromJson(state.toJson());
-    data.name = address;
+    data.address = address;
     emit(data);
   }
 

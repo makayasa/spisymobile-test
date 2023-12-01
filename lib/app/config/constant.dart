@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const kDefaultUsername = 'spisy10mobile';
 const kDefaultPssword = 'spisy10mobile';
 
-const kPrimaryColor = Colors.black;
+const kPrimaryColor = Color(0xFFeaddff);
 const kBgWhite = Color(0xFFffffff);
 const kBgBlack = Color(0xFF191508);
 const kGrey = Color(0xFF595959);
